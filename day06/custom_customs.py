@@ -1,4 +1,14 @@
-def custom_customs(puzzle_input):
+def part1(puzzle_input):
+    sum_counts = 0
+
+    for line in puzzle_input:
+        questions = set(char for char in line if char != '\n')
+        sum_counts += len(questions)
+
+    return sum_counts
+
+
+def part2(puzzle_input):
     sum_counts = 0
 
     for group in puzzle_input:
@@ -11,8 +21,9 @@ def custom_customs(puzzle_input):
     return sum_counts
 
 
-with open('puzzle_input.txt') as f:
+with open('input.txt') as f:
     data = f.read()
 
 puzzle_input = data.split('\n\n')
-print(custom_customs(puzzle_input))
+print('Part 1:', part1(puzzle_input))
+print('Part 2:', part2(puzzle_input))
