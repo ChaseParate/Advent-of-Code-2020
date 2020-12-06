@@ -17,7 +17,7 @@ def part1(puzzle_input):
 
 def part2(puzzle_input):
     required_fields = {'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'}
-    
+
     valid_passports = 0
     for passport in puzzle_input:
         fields = [k for k in passport.replace('\n', ' ').split(' ')]
@@ -25,7 +25,7 @@ def part2(puzzle_input):
 
         if len(required_fields.difference(keys)) != 0:
             continue
-        
+
         valid = True
         if not 1920 <= int(keys['byr']) <= 2002:
             valid = False
@@ -38,14 +38,14 @@ def part2(puzzle_input):
                                           59 <= int(keys['hgt'][:-2]) <= 76):
             valid = False
         elif keys['hcl'][0] != '#' or len(keys['hcl']) != 7 or \
-        not all(_ in '0123456789abcdef' for _ in keys['hcl'][1:]):
+                not all(_ in '0123456789abcdef' for _ in keys['hcl'][1:]):
             valid = False
         elif keys['ecl'] not in \
-        ('amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'):
+                ('amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'):
             valid = False
         elif not keys['pid'].isdigit() or len(keys['pid']) != 9:
             valid = False
-        
+
         if valid:
             valid_passports += 1
 
