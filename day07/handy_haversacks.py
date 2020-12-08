@@ -47,10 +47,8 @@ def bags_needed_for_shiny_gold_bag(bags, bag_contents):
     if 'no other' in bag_contents:
         return 0
     else:
-        bags_needed = len(bag_contents)
-        for inner_bag in bag_contents:
-            bags_needed += bags_needed_for_shiny_gold_bag(bags, bags[inner_bag])
-        return bags_needed
+        return len(bag_contents) + sum(bags_needed_for_shiny_gold_bag(
+            bags, bags[inner_bag]) for inner_bag in bag_contents)
 
 
 with open('input.txt') as f:
