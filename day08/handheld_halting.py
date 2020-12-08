@@ -1,19 +1,18 @@
 def part1(puzzle_input):
     instructions_done = []
+
     pc = 0
-    
     acc = 0
     while pc not in instructions_done:
         instructions_done.append(pc)
+        opcode, argument = puzzle_input[pc].split()
 
-        instruction = puzzle_input[pc]
-        opcode, argument = instruction.split()
-        
         if opcode == 'acc':
             acc += int(argument)
         elif opcode == 'jmp':
             pc += int(argument)
             continue
+
         pc += 1
 
     return acc
@@ -35,25 +34,23 @@ def part2(puzzle_input):
 
 def execute_program(program):
     instructions_done = []
+
     pc = 0
-    
     acc = 0
     while pc not in instructions_done:
-        instructions_done.append(pc)
-
         if pc >= len(program):
             return acc
-        
+
+        instructions_done.append(pc)
         opcode, argument = program[pc].split()
-        
+
         if opcode == 'acc':
             acc += int(argument)
         elif opcode == 'jmp':
             pc += int(argument)
             continue
-        pc += 1
 
-    return False
+        pc += 1
 
 
 with open('input.txt') as f:
